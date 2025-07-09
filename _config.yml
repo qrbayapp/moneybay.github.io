@@ -2,8 +2,8 @@ title: My Website
 email: your-email@example.com
 description: >-
   Write an awesome description for your new site here.
-baseurl: "" # the subpath of your site
-url: "http://localhost:4000" # the base hostname & protocol for your site
+baseurl: "/moneybay.github.io" # the subpath of your site
+url: "https://qrbayapp.github.io" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  jekyll
 
