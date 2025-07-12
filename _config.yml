@@ -2,8 +2,8 @@ title: MoneyBay
 email: support@moneybay.app
 description: >-
   MoneyBay - Ứng dụng quản lý chi tiêu cá nhân thông minh, giúp bạn kiểm soát tài chính hiệu quả.
-baseurl: "/moneybay.github.io" # the subpath of your site
-url: "https://qrbayapp.github.io" # the base hostname & protocol for your site
+baseurl: "" # the subpath of your site
+url: "https://moneybay.app" # the base hostname & protocol for your site
 twitter_username: moneybayapp
 github_username:  qrbayapp
 
