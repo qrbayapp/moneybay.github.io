@@ -819,12 +819,26 @@
                 }
             });
 
-            const savedLang = localStorage.getItem('moneybay-lang');
-            if (savedLang && translations[savedLang]) {
-                setLanguage(savedLang);
-            } else {
-                 setLanguage('vi'); // Default to Vietnamese
-            }
+            // Auto-detect language based on user's location
+            const detectUserLanguage = () => {
+                // Check if user has manually set a language preference
+                const savedLang = localStorage.getItem('moneybay-lang');
+                if (savedLang && translations[savedLang]) {
+                    return savedLang;
+                }
+                
+                // Try to detect language from browser
+                const browserLang = navigator.language || navigator.userLanguage;
+                if (browserLang && browserLang.startsWith('vi')) {
+                    return 'vi';
+                }
+                
+                // Default to English for non-Vietnamese users
+                return 'en';
+            };
+            
+            const initialLang = detectUserLanguage();
+            setLanguage(initialLang);
             // ===== END: Language Switcher Logic =====
 
 
@@ -989,8 +1003,22 @@ function updateTypingLanguage(newLang) {
 
 // Khởi động animation khi trang load
 document.addEventListener('DOMContentLoaded', function() {
-    const savedLang = localStorage.getItem('moneybay-lang') || 'vi';
-    currentLanguage = savedLang;
+    // Auto-detect language for typing animation
+    const detectTypingLanguage = () => {
+        const savedLang = localStorage.getItem('moneybay-lang');
+        if (savedLang && (savedLang === 'vi' || savedLang === 'en')) {
+            return savedLang;
+        }
+        
+        const browserLang = navigator.language || navigator.userLanguage;
+        if (browserLang && browserLang.startsWith('vi')) {
+            return 'vi';
+        }
+        
+        return 'en';
+    };
+    
+    currentLanguage = detectTypingLanguage();
     
     setTimeout(() => {
         startTypingAnimation();

@@ -618,8 +618,27 @@
             });
         });
 
-        // Initialize with Vietnamese
-        switchLanguage('vi');
+        // Auto-detect language based on user's location
+        const detectUserLanguage = () => {
+            // Check if user has manually set a language preference
+            const savedLang = localStorage.getItem('moneybay-lang');
+            if (savedLang && (savedLang === 'vi' || savedLang === 'en')) {
+                return savedLang;
+            }
+            
+            // Try to detect language from browser
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang && browserLang.startsWith('vi')) {
+                return 'vi';
+            }
+            
+            // Default to English for non-Vietnamese users
+            return 'en';
+        };
+        
+        // Initialize with detected language
+        const initialLang = detectUserLanguage();
+        switchLanguage(initialLang);
     </script>
 </body>
 </html>
